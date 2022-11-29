@@ -1,40 +1,46 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-
 import * as SC from './ContactList.styled';
 import { FcPhoneAndroid } from 'react-icons/fc';
 import { removeContact } from '../../redux/contactSlice';
+import {
+  getError,
+  getIsLoading,
+  selectFilteredContacts,
+} from '../../redux/selectors';
 
 export const ContactList = () => {
-  const contacts = useSelector(state => state.contacts.contacts);
-  const filter = useSelector(state => state.filter.filter);
   const dispatch = useDispatch();
+  const isLoading = useSelector(getIsLoading);
+  const error = useSelector(getError);
 
-  const filterContactsList = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  const filteredContacts = useSelector(selectFilteredContacts);
 
   return (
-    <SC.ContactListUl>
-      {filterContactsList.map(({ name, number, id }) => (
-        <SC.ContactListLi key={id}>
-          <SC.ContactCard>
-            <FcPhoneAndroid />
-            <SC.ContactTitle>
-              {name}: {number}
-            </SC.ContactTitle>
-          </SC.ContactCard>
+    <>
+      {isLoading && <p>Loading tasks...</p>}
+      {error && <p>{error}</p>}
+      <SC.ContactListUl>
+        {filteredContacts.map(({ name, phone, id }) => (
+          <SC.ContactListLi key={id}>
+            <SC.ContactCard>
+              <FcPhoneAndroid />
+              <SC.ContactTitle>
+                {name}: {phone}
+              </SC.ContactTitle>
+            </SC.ContactCard>
 
-          <SC.ButtonDelete
-            type="button"
-            onClick={() => dispatch(removeContact({ id }))}
-          >
-            Delete
-          </SC.ButtonDelete>
-        </SC.ContactListLi>
-      ))}
-    </SC.ContactListUl>
+            <SC.ButtonDelete
+              type="button"
+              onClick={() => dispatch(removeContact({ id }))}
+            >
+              Delete
+            </SC.ButtonDelete>
+          </SC.ContactListLi>
+        ))}
+      </SC.ContactListUl>
+    </>
   );
 };
 

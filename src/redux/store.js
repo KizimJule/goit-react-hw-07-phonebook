@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { persistStore } from 'redux-persist';
 
 import filterReducer from './filterSlice';
-import { persistStore } from 'redux-persist';
 import { persistSubmitReducer } from './contactSlice';
 
 import {
@@ -16,6 +16,7 @@ import {
 export const store = configureStore({
   reducer: {
     contacts: persistSubmitReducer,
+    // contacts: tasksReducer,
     filter: filterReducer,
   },
   middleware(getDefaultMiddleware) {
