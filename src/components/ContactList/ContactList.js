@@ -3,26 +3,30 @@ import propTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import * as SC from './ContactList.styled';
 import { FcPhoneAndroid } from 'react-icons/fc';
-import { removeContact } from '../../redux/contactSlice';
+import { deleteContact } from '../../redux/operations';
 import {
-  getError,
-  getIsLoading,
+  selectError,
+  selectIsLoading,
   selectFilteredContacts,
 } from '../../redux/selectors';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
 
-  const filteredContacts = useSelector(selectFilteredContacts);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
+  const contacts = useSelector(selectFilteredContacts);
+
+  const delContact = contactId => {
+    dispatch(deleteContact(contactId));
+  };
   return (
     <>
       {isLoading && <p>Loading tasks...</p>}
       {error && <p>{error}</p>}
       <SC.ContactListUl>
-        {filteredContacts.map(({ name, phone, id }) => (
+        {contacts.map(({ name, phone, id }) => (
           <SC.ContactListLi key={id}>
             <SC.ContactCard>
               <FcPhoneAndroid />
@@ -31,10 +35,7 @@ export const ContactList = () => {
               </SC.ContactTitle>
             </SC.ContactCard>
 
-            <SC.ButtonDelete
-              type="button"
-              onClick={() => dispatch(removeContact({ id }))}
-            >
+            <SC.ButtonDelete type="button" onClick={() => delContact(id)}>
               Delete
             </SC.ButtonDelete>
           </SC.ContactListLi>

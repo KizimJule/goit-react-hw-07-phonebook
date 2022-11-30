@@ -2,16 +2,23 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../../redux/contactSlice';
 import * as SC from './ContactForm.styled';
+import { selectContacts } from '../../redux/selectors';
+import { addContacts } from '../../redux/operations';
 
 export function ContactForm() {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-  const contacts = useSelector(state => state.contacts.contacts);
+  const [phone, setPhone] = useState('');
+
+  // const [contactId, setContactId] = useState(nanoid());
+
+  const contacts = useSelector(selectContacts);
+  // const error = useSelector(getError);
+  // const isLoading = useSelector(getIsLoading);
 
   let NameInputId = nanoid();
-  let NumberInputId = nanoid();
+  let PhoneInputId = nanoid();
+
   const dispatch = useDispatch();
 
   const handleInputChange = evt => {
@@ -23,7 +30,7 @@ export function ContactForm() {
         break;
 
       case 'number':
-        setNumber(value);
+        setPhone(value);
         break;
 
       default:
@@ -33,7 +40,7 @@ export function ContactForm() {
 
   const reset = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   const handleSubmit = evt => {
@@ -46,10 +53,12 @@ export function ContactForm() {
       alert(`${name} is already in contacts.`);
       return;
     }
-    const newContact = { id: nanoid(), name, number };
-    dispatch(addContact(newContact));
+
+    const newContact = { id: nanoid(), name, phone };
+    dispatch(addContacts(newContact));
     reset();
   };
+
   return (
     <SC.Screen>
       <SC.ScreenContent>
@@ -68,15 +77,15 @@ export function ContactForm() {
               required
             />
           </SC.Label>
-          <SC.Label htmlFor={NumberInputId}>
+          <SC.Label htmlFor={PhoneInputId}>
             Number
             <SC.Input
-              value={number}
+              value={phone}
               onChange={handleInputChange}
               type="tel"
               name="number"
               placeholder="Number"
-              id={NumberInputId}
+              id={PhoneInputId}
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
