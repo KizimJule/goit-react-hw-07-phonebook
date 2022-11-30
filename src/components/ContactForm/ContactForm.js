@@ -10,11 +10,7 @@ export function ContactForm() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
 
-  // const [contactId, setContactId] = useState(nanoid());
-
   const contacts = useSelector(selectContacts);
-  // const error = useSelector(getError);
-  // const isLoading = useSelector(getIsLoading);
 
   let NameInputId = nanoid();
   let PhoneInputId = nanoid();

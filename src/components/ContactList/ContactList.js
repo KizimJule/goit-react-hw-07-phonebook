@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import * as SC from './ContactList.styled';
 import { FcPhoneAndroid } from 'react-icons/fc';
-import { deleteContact } from '../../redux/operations';
+import { deleteContact, fetchContacts } from '../../redux/operations';
 import {
   selectError,
   selectIsLoading,
@@ -21,7 +21,9 @@ export const ContactList = () => {
 
   const delContact = contactId => {
     dispatch(deleteContact(contactId));
+    dispatch(fetchContacts());
   };
+
   return (
     <>
       {isLoading && <p>Loading tasks...</p>}

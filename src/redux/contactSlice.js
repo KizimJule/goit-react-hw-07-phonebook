@@ -1,6 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 import { fetchContacts, addContacts, deleteContact } from './operations';
 
 export const contactSlice = createSlice({
@@ -12,29 +10,29 @@ export const contactSlice = createSlice({
   },
 
   extraReducers: {
-    [fetchContacts.pending](state) {
+    [fetchContacts.pending]: state => {
       console.log(state);
       state.isLoading = true;
     },
-    [fetchContacts.fulfilled](state, action) {
+    [fetchContacts.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.error = null;
       state.items = action.payload;
     },
-    [fetchContacts.rejected](state, action) {
+    [fetchContacts.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
 
-    [addContacts.pending](state) {
+    [addContacts.pending]: state => {
       state.isLoading = true;
     },
-    [addContacts.fulfilled](state, action) {
+    [addContacts.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.error = null;
       state.items.push(action.payload);
     },
-    [addContacts.rejected](state, action) {
+    [addContacts.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
@@ -45,7 +43,6 @@ export const contactSlice = createSlice({
   },
   [deleteContact.fulfilled]: (state, action) => {
     console.log(action);
-
     // state.items = state.items.filter(contact => contact.id !== action.payload);
     state.isLoading = false;
     state.error = null;
@@ -59,17 +56,6 @@ export const contactSlice = createSlice({
     state.isLoading = false;
   },
 });
-
-// сохраняем список контактов в local Storage
-const persistConfig = {
-  key: 'root',
-  storage,
-};
-export const persistSubmitReducer = persistReducer(
-  persistConfig,
-  contactSlice.reducer
-);
-//
 
 export const contactReducer = contactSlice.reducer;
 
