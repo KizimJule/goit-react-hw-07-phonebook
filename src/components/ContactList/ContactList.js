@@ -16,7 +16,7 @@ export const ContactList = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
-  const contacts = useSelector(selectFilteredContacts);
+  const filteredContacts = useSelector(selectFilteredContacts);
 
   const delContact = contactId => {
     dispatch(deleteContact(contactId));
@@ -26,7 +26,7 @@ export const ContactList = () => {
       {isLoading && <p>Loading tasks...</p>}
       {error && <p>{error}</p>}
       <SC.ContactListUl>
-        {contacts.map(({ name, phone, id }) => (
+        {filteredContacts.map(({ name, phone, id }) => (
           <SC.ContactListLi key={id}>
             <SC.ContactCard>
               <FcPhoneAndroid />
