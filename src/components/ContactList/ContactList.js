@@ -18,11 +18,9 @@ export const ContactList = () => {
   const error = useSelector(selectError);
 
   const filteredContacts = useSelector(selectFilteredContacts);
-  console.log(filteredContacts);
 
   const delContact = contactId => {
     dispatch(deleteContact(contactId));
-    // dispatch(fetchContacts());
   };
 
   return (
