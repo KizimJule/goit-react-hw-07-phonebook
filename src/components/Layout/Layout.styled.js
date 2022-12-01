@@ -47,4 +47,8 @@ export const Footer = styled.footer`
   text-align: center;
   padding: 6px 12px;
   border-top: 3px solid #6a679e;
+  flex: 0 0 auto;
+`;
+export const Text = styled.p`
+  margin: 0;
 `;

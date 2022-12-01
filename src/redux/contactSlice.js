@@ -8,7 +8,7 @@ export const contactSlice = createSlice({
     isLoading: false,
     error: null,
   },
-
+  reducerPath: 'contacts',
   extraReducers: {
     [fetchContacts.pending]: state => {
       console.log(state);
@@ -19,6 +19,7 @@ export const contactSlice = createSlice({
       state.error = null;
       state.items = action.payload;
     },
+    providesTags: ['Contacts'],
     [fetchContacts.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
@@ -32,6 +33,7 @@ export const contactSlice = createSlice({
       state.error = null;
       state.items.push(action.payload);
     },
+    invalidatesTags: ['Contacts'],
     [addContacts.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
@@ -51,6 +53,7 @@ export const contactSlice = createSlice({
     );
     state.items.splice(idx, 1);
   },
+  // invalidatesTags: ['Contacts'],
   [deleteContact.rejected]: (state, { payload }) => {
     state.error = payload;
     state.isLoading = false;

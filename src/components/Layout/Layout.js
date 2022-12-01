@@ -21,7 +21,7 @@ export const Layout = () => {
         <Outlet />
       </Suspense>
       <SC.Footer>
-        <p>&copy; 2022 | Julia K.</p>
+        <SC.Text>&copy; 2022 | Julia K.</SC.Text>
       </SC.Footer>
     </SC.Container>
   );

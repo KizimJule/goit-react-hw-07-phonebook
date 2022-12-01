@@ -90,8 +90,8 @@ export const ScreenBackgroundShape4 = styled.span`
 export const ScreenBackgroundShape3 = styled.span`
   transform: rotate(45deg);
   position: absolute;
-  height: 540px;
-  width: 190px;
+  height: 440px;
+  width: 150px;
   background: linear-gradient(270deg, #5d54a4, #6a679e);
   top: -24px;
   right: 0;
