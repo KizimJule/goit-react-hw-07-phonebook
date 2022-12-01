@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const ContactListUl = styled.ul`
-  font-size: 20px;
+  font-size: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0;
+  margin: 0;
   background: linear-gradient(270deg, #5d54a4, #7e7bb9);
 `;
 export const ContactListLi = styled.li`
@@ -14,7 +15,7 @@ export const ContactListLi = styled.li`
   justify-content: space-between;
   border: 1px solid black;
   list-style-position: inside;
-  width: 460px;
+  width: 420px;
   padding: 8px;
 `;
 export const ContactTitle = styled.p`

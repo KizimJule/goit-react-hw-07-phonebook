@@ -4,17 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as SC from './ContactList.styled';
 import { FcPhoneAndroid } from 'react-icons/fc';
 import { deleteContact } from '../../redux/operations';
-// import { deleteContact, fetchContacts } from '../../redux/operations';
-import {
-  selectError,
-  selectIsLoading,
-  selectFilteredContacts,
-} from '../../redux/selectors';
+import { selectError, selectFilteredContacts } from '../../redux/selectors';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
 
-  const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
   const filteredContacts = useSelector(selectFilteredContacts);
@@ -25,7 +19,6 @@ export const ContactList = () => {
 
   return (
     <>
-      {isLoading && <p>Loading tasks...</p>}
       {error && <p>{error}</p>}
       <SC.ContactListUl>
         {filteredContacts.map(({ name, phone, id }) => (

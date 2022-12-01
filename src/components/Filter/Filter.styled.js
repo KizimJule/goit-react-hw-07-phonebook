@@ -4,10 +4,11 @@ export const FilterLabel = styled.label`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  font-size: 22px;
+  gap: 8px;
+  font-size: 18px;
   font-weight: 600;
   color: #4c489d;
+  margin-bottom: 12px;
 `;
 export const FilterInput = styled.input`
   border: none;

@@ -3,14 +3,14 @@ import { NavLink } from 'react-router-dom';
 
 export const Header = styled.header`
   border-bottom: 1px solid black;
-  position: fixed;
-  z-index: 100;
-  top: 0;
+  /* position: fixed; */
+  /* z-index: 100; */
+  /* top: 0; */
   width: 100%;
   background: radial-gradient(
     circle,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
+    rgba(238, 174, 202, 1) 25%,
+    rgba(119, 107, 204, 1) 100%
   );
   /* > nav {
     display: flex;
@@ -18,6 +18,12 @@ export const Header = styled.header`
   } */
 `;
 export const Container = styled.div``;
+export const HeaderTitle = styled.h1`
+  font-size: 32px;
+  margin: 0;
+  text-align: center;
+  color: #034f84;
+`;
 export const Section = styled.section`
   padding: 20px 24px;
   margin: 0 auto;

@@ -8,14 +8,15 @@ export const Layout = () => {
   return (
     <SC.Container>
       <SC.Header>
-        {/* <SC.Section>
-          <SC.Nav>
+        <SC.Section>
+          <SC.HeaderTitle>Hi, I’m your phonebook</SC.HeaderTitle>
+          {/* <SC.Nav>
             <SC.StyledLink to="/" end>
               Home
             </SC.StyledLink>
             <SC.StyledLink to="/movies">Movies</SC.StyledLink>
-          </SC.Nav>
-        </SC.Section> */}
+          </SC.Nav> */}
+        </SC.Section>
       </SC.Header>
       <Suspense fallback={<Loader />}>
         <Outlet />
